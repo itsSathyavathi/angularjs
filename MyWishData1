@@ -1,0 +1,75 @@
+package com.myworld.soni.rest.webservices.restfulwebservices.mywishlist;
+
+import java.util.Date;
+
+public class MyWishData {
+	
+	private int usserId;
+	private String usernName;
+	public String description;
+	private Date dateOfDelivery;
+	private boolean availability;
+	
+	
+	
+	
+	public MyWishData(int usserId, String usernName, String descrition, Date dateOfDelivery, boolean availability) {
+		super();
+		this.usserId = usserId;
+		this.usernName = usernName;
+		this.description = descrition;
+		this.dateOfDelivery = dateOfDelivery;
+		this.availability = availability;
+	}
+	public int getUsserId() {
+		return usserId;
+	}
+	public String getUsernName() {
+		return usernName;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public Date getDateOfDelivery() {
+		return dateOfDelivery;
+	}
+	public boolean isAvailability() {
+		return availability;
+	}
+	public void setUsserId(int usserId) {
+		this.usserId = usserId;
+	}
+	public void setUsernName(String usernName) {
+		this.usernName = usernName;
+	}
+	public void setDescrition(String description) {
+		this.description = description;
+	}
+	public void setDateOfDelivery(Date dateOfDelivery) {
+		this.dateOfDelivery = dateOfDelivery;
+	}
+	public void setAvailability(boolean availability) {
+		this.availability = availability;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (availability ? 1231 : 1237);
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MyWishData other = (MyWishData) obj;
+		if (availability != other.availability)
+			return false;
+		return true;
+	}
+
+}
