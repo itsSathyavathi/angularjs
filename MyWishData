@@ -1,0 +1,44 @@
+package com.myworld.soni.rest.webservices.restfulwebservices.mywishlist;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@CrossOrigin(origins="http://localhost:4200") // for allowing other sites for response 
+public class MyWishList {
+
+	@Autowired
+	public WishListService wishListService;
+	
+	@GetMapping("users/{usernName}/MyWishData")
+	public List<MyWishData> getAllWishItems(@PathVariable String usernName){
+		return wishListService.findAll();
+		
+	}
+	
+	@GetMapping("users/{usernName}/MyWishData/{usserId}")
+	public MyWishData getWishItemById(@PathVariable String usernName, @PathVariable int usserId){
+		return wishListService.findByID(usserId);
+		
+	}
+	
+	@DeleteMapping("users/{usernName}/MyWishData/{usserId}")
+	public ResponseEntity<Void> deleteId(@PathVariable String usernName, @PathVariable int usserId){
+		MyWishData mywishData= wishListService.deleteByID(usserId);
+		if(mywishData!=null){
+		
+			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.notFound().build();
+		
+		
+			
+	}
+}
