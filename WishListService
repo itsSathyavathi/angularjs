@@ -1,0 +1,52 @@
+package com.myworld.soni.rest.webservices.restfulwebservices.mywishlist;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class WishListService {
+
+	public static List<MyWishData> wishList = new ArrayList<MyWishData>();
+	public static int idCounter=0;
+	static{
+		
+		wishList.add(new MyWishData(++idCounter, "soni", "Palazzos",new Date(), false));
+		wishList.add(new MyWishData(++idCounter, "soni", "Dress", new Date(), true));
+		wishList.add(new MyWishData(++idCounter, "soni", "Tops", new Date(), false));
+		wishList.add(new MyWishData(++idCounter, "soni", "Jumpsuit", new Date(), false));
+		wishList.add(new MyWishData(++idCounter, "soni", "Denims", new Date(), true));
+	}
+	
+	public List<MyWishData> findAll(){
+		return wishList;
+	}
+
+	
+
+
+
+
+	//Creating delete method
+	public MyWishData deleteByID(int userId){
+		MyWishData mywishData= findByID(userId);
+		if(mywishData==null)
+			return null;
+		if(wishList.remove(mywishData)){
+		return mywishData;
+	}
+			return null;
+	}
+
+
+	public MyWishData findByID(int userId) {
+		for(MyWishData myData: wishList ){
+			if(myData.getUsserId()==userId)
+				return myData;
+		}
+		
+		return null;
+	}
+}
